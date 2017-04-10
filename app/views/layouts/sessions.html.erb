@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @page_title %></title>
+  <%= stylesheet_link_tag    'bootstrap', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'shared/flash_area' %>
+<%= yield %>
+<% if content_for?(:js_in_footer)%>
+  <%= yield(:js_in_footer) %>
+<%end %>
+
+<%= render 'layouts/shared/footer' %>
+</body>
+</html>

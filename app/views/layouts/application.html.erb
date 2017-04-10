@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DemoNews</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <% if content_for?(:js_in_header)%>
+    <%= yield(:js_in_head) %>
+  <%end %>
+</head>
+<body>
+<%= render 'shared/flash_area' %>
+<%= render 'layouts/shared/navbar' %>
+<div style="height: 60px"></div>
+<div class="container-fluid">
+  <div class="row">
+    <%= render 'layouts/shared/sidebar' %>
+
+    <div class="col-md-offset-2 main">
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render 'layouts/shared/footer' %>
+</div>
+
+
+<% if content_for?(:js_in_footer)%>
+  <%= yield(:js_in_footer) %>
+<%end %>
+</body>
+</html>

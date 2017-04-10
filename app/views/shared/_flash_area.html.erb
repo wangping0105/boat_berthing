@@ -1,0 +1,20 @@
+<%if flash.present? %>
+  <nav class="navbar index_9999">
+  <div id= "notice">
+    <% flash.each do |key, value| %>
+        <div class="flash alert-warning <%= key %>">
+          <%= value %>
+        </div>
+    <% end %>
+  </div>
+</nav>
+<script>
+  setTimeout(function(){
+    $("#notice").remove();
+    }, 3000)
+</script>
+<%end %>
+
+
+<div id="faye_msg" class="alert_msg faye_msg">
+</div>

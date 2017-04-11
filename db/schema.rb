@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161208085613) do
+ActiveRecord::Schema.define(version: 20170411130251) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.float    "lat",              limit: 24
@@ -96,6 +96,19 @@ ActiveRecord::Schema.define(version: 20161208085613) do
     t.index ["pinyin"], name: "index_countries_on_pinyin", using: :btree
   end
 
+  create_table "departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.integer  "parent_id"
+    t.string   "path",       default: "0"
+    t.integer  "user_count", default: 0
+    t.boolean  "is_default", default: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["deleted_at"], name: "index_departments_on_deleted_at", using: :btree
+    t.index ["parent_id"], name: "index_departments_on_parent_id", using: :btree
+  end
+
   create_table "districts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "pinyin"
@@ -132,6 +145,15 @@ ActiveRecord::Schema.define(version: 20161208085613) do
     t.index ["users_id"], name: "index_sms_codes_on_users_id", using: :btree
   end
 
+  create_table "user_departments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "department_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["department_id"], name: "index_user_departments_on_department_id", using: :btree
+    t.index ["user_id"], name: "index_user_departments_on_user_id", using: :btree
+  end
+
   create_table "user_devices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "uid"
     t.string   "device_token"
@@ -147,6 +169,7 @@ ActiveRecord::Schema.define(version: 20161208085613) do
     t.string   "phone",                                            comment: "手机"
     t.string   "email",                  default: "",              comment: "邮箱"
     t.string   "name",                                             comment: "用户名"
+    t.string   "true_name",                                        comment: "真实姓名"
     t.string   "name_pinyin"
     t.string   "authentication_token"
     t.datetime "activated"
@@ -165,6 +188,7 @@ ActiveRecord::Schema.define(version: 20161208085613) do
     t.string   "last_sign_in_ip"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", using: :btree
     t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["name"], name: "index_users_on_name", using: :btree
     t.index ["phone"], name: "index_users_on_phone", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

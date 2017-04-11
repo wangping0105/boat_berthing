@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   acts_as_paranoid
   # has_secure_password
   has_one :api_key
+  has_one :user_department
+  has_one :department, through: :user_department
   has_one :attachment, as: :attachmentable
 
   validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
@@ -15,7 +17,7 @@ class User < ActiveRecord::Base
 
   before_save do
     self.name ||= self.phone
-    self.name_pinyin = PinYin.of_string(self.name).join('').first(255)
+    self.name_pinyin = PinYin.of_string(self.true_name).join('').first(255)
   end
 
   after_save do

@@ -5,6 +5,9 @@ class ActionDispatch::Routing::Mapper
 end
 
 Rails.application.routes.draw do
+  resources :user_managements
+  resources :departments
+
   draw :api
   devise_for :users, controllers: {
      sessions: 'users/sessions',

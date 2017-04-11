@@ -1,0 +1,26 @@
+<h2 class="sub-header">部门管理</h2>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>部门名称</th>
+    <th>员工部门数</th>
+    <th>创建时间</th>
+    <th width="200">操作</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @departments.each do |department| %>
+    <tr>
+      <td><%= department.id %></td>
+      <td><%= department.name %></td>
+      <td><%= department.user_count %></td>
+      <td><%= department.created_at.strftime("%F %T") %></td>
+      <td>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @departments %>

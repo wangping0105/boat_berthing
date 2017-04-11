@@ -7,6 +7,7 @@
 #= require jquery.validate.additional-methods
 #= require jquery.validate.localization/messages_zh
 #= require jquery.validate.custom
+#= require bootstrap/js/bootstrap.min
 #= require turbolinks
 #= require_tree .
 

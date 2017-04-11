@@ -10,7 +10,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-    @user = User.find_by(phone: user_params[:phone])
+    @user = User.find_by(name: user_params[:name])
 
     if @user && @user.valid_password?(user_params[:password])
       sign_in(@user)
@@ -41,6 +41,6 @@ class Users::SessionsController < Devise::SessionsController
 
   private
   def user_params
-    params.require(:user).permit(:phone, :password)
+    params.require(:user).permit(:name, :password)
   end
 end

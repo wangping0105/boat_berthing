@@ -6,8 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-u = User.create(name: :admin, password: :admin123, phone: "admin", role: User.roles[:admin])
-
+department = Department.create(name: "总裁办", is_default: true)
+u = User.create(name: :admin, true_name: "超管", password: :admin123, phone: "admin", role: User.roles[:admin])
+UserDepartment.create(user: u, department: department)
 
 
 

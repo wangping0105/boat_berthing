@@ -1,4 +1,4 @@
-class AppVersion < ActiveRecord::Base
+class AppVersion < ApplicationRecord
   enum app_type: [ :android, :ios ]
   APP_TYPE = HashWithIndifferentAccess.new(I18n.t("enums.app_version.app_type"))
 

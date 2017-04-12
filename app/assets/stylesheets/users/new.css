@@ -1,0 +1,10 @@
+
+.new-user-form{
+    width: auto;
+}
+
+.new-user{
+    display: table;
+    min-width: 580px;
+    width: 580px;
+}

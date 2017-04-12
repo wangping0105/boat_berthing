@@ -1,9 +1,11 @@
 <h2 class="sub-header">员工列表</h2>
 
+<%= link_to '新建用戶', new_user_path, class:'btn btn-primary' %>
 <table class="table table-striped">
   <thead>
   <tr>
     <th>ID</th>
+    <th>用户名</th>
     <th>姓名</th>
     <th>所属部门</th>
     <th>创建时间</th>
@@ -15,6 +17,7 @@
     <tr>
       <td><%= pr.id %></td>
       <td><%= pr.name %></td>
+      <td><%= pr.true_name %></td>
       <td><%= pr.department.try(:name) %></td>
       <td><%= pr.created_at.strftime("%F %T") %></td>
       <td>

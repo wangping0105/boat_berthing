@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
   validates_presence_of :password, :message => "密码不能为空!"
   enum :role => { nomal: 0, admin: 1 }
+  DEFAULT_PASSWORD = "11111111"
 
   before_save do
     self.name ||= self.phone

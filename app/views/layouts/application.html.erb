@@ -10,14 +10,14 @@
   <%end %>
 </head>
 <body>
-<%= render 'shared/flash_area' %>
 <%= render 'layouts/shared/navbar' %>
 <div style="height: 60px"></div>
+<%= render 'shared/flash_area' %>
 <div class="container-fluid">
   <div class="row">
     <%= render 'layouts/shared/sidebar' %>
 
-    <div class="col-md-offset-2 main">
+    <div class="col-md-10 main">
       <%= yield %>
     </div>
   </div>

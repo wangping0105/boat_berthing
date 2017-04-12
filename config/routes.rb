@@ -7,6 +7,7 @@ end
 Rails.application.routes.draw do
   resources :user_managements
   resources :departments
+  resources :users
 
   draw :api
   devise_for :users, controllers: {

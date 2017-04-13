@@ -1,4 +1,4 @@
-<h2 class="sub-header">新增员工</h2>
+<h2 class="sub-header"><%= new_or_edit(@user) %>员工</h2>
 
 <div class='new-user-form'>
   <div class='new-user'>
@@ -32,14 +32,21 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label"></label>
-        <div class="col-sm-10">默认密码 11111111</div>
-      </div>
+      <%if @user.new_record? %>
+        <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">默认密码 11111111</div>
+        </div>
+      <%else %>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">新密码</label>
+          <div class="col-sm-10"><%= text_field_tag :password, nil, class:"form-control", placeholder: '不填则不修改' %></div>
+        </div>
+      <% end %>
 
       <div class="form-group">
         <label class="col-sm-2 control-label"></label>
-        <div class="col-sm-10"><%= f.submit '新增员工', class: 'btn btn-primary' %></div>
+        <div class="col-sm-10"><%= f.submit "保存", class: 'btn btn-primary' %></div>
       </div>
     <%end %>
   </div>

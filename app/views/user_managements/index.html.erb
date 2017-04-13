@@ -13,15 +13,14 @@
   </tr>
   </thead>
   <tbody>
-  <% @users.each do |pr| %>
+  <% @users.each do |user| %>
     <tr>
-      <td><%= pr.id %></td>
-      <td><%= pr.name %></td>
-      <td><%= pr.true_name %></td>
-      <td><%= pr.department.try(:name) %></td>
-      <td><%= pr.created_at.strftime("%F %T") %></td>
-      <td>
-      </td>
+      <td><%= user.id %></td>
+      <td><%= user.name %></td>
+      <td><%= user.true_name %></td>
+      <td><%= user.department.try(:name) %></td>
+      <td><%= user.created_at.strftime("%F %T") %></td>
+      <td><%= link_to '编辑', edit_user_path(user), class: 'btn btn-primary' %></td>
     </tr>
   <% end %>  </tbody>
 </table>

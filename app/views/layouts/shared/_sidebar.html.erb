@@ -1,7 +1,7 @@
 <div class="col-md-2">
     <ul class="nav nav-sidebar">
       <li class="<%= active_by('home') %>"><a href="/">船舶管理 <span class="sr-only">(current)</span></a></li>
-      <li class="<%= active_by('user_managements') %>"><a href="<%= user_managements_path %>">员工列表</a></li>
+      <li class="<%= active_by(['user_managements', 'users']) %>"><a href="<%= user_managements_path %>">员工列表</a></li>
       <li class="<%= active_by('departments') %>"><a href="<%= departments_path %>">部门管理</a></li>
     </ul>
 </div>

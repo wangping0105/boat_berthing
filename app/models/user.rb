@@ -12,8 +12,10 @@ class User < ActiveRecord::Base
   has_one :attachment, as: :attachmentable
 
   validates_uniqueness_of :phone, conditions: -> { paranoia_scope }
-  validates_presence_of :password, :message => "密码不能为空!"
+  validates_presence_of :password, :message => "密码不能为空!", if: :new_record?
+
   enum :role => { nomal: 0, admin: 1 }
+
   DEFAULT_PASSWORD = "11111111"
 
   before_save do
@@ -31,5 +33,4 @@ class User < ActiveRecord::Base
     end
     false
   end
-
 end

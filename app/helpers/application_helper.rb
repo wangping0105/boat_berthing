@@ -5,6 +5,10 @@ module ApplicationHelper
   end
 
   def active_by(name)
-    controller_name == name ? "active" : ''
+    if name.class == String
+      controller_name == name ? "active" : ''
+    else
+      controller_name.in?(name) ? "active" : ''
+    end
   end
 end

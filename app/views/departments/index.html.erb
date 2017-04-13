@@ -11,6 +11,11 @@
   </tr>
   </thead>
   <tbody>
+  <tr>
+    <td>#</td>
+    <td colspan="3"><%= text_field_tag "department[name]", nil, class:"form-control", placeholder: '请输入部门名称' %></td>
+    <td><%= button_tag '新增部门', class: 'btn btn-primary new_department' %></td>
+  </tr>
   <% @departments.each do |department| %>
     <tr>
       <td><%= department.id %></td>
@@ -18,9 +23,31 @@
       <td><%= department.user_count %></td>
       <td><%= department.created_at.strftime("%F %T") %></td>
       <td>
+        <%= link_to '删除', department_path(department), class: 'btn btn-primary',
+              method: :delete, data: { confirm: "确认删除部门 #{department.name} ？" } %>
       </td>
     </tr>
   <% end %>
   </tbody>
 </table>
 <%= paginate @departments %>
+
+<script>
+  $(".new_department").on("click", function(){
+    "/departments"
+    $.ajax({
+      url: "/departments",
+      type: 'post',
+      data: { department_name: $("#department_name").val() },
+      dataType: 'json',
+      success: function(data){
+        if(data.code == 0){
+          handleMessage("新增部门成功!")
+          location.reload()
+        }else{
+          handleMessage(data.msg)
+        }
+      }
+    })
+  })
+</script>

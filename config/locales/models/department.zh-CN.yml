@@ -1,0 +1,8 @@
+zh-CN:
+  activerecord:
+    models:
+      department: "部门"
+    attributes:
+      department:
+        id: "ID"
+        name: "部门名称"
